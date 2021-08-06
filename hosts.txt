@@ -1,4 +1,0 @@
-
-[Server]
-LinixUbuntu ansible_host=172.16.10.188  
-

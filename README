@@ -12,13 +12,13 @@
 sudo visudo
 kunak (ALL:ALL) NOPASSWD: ALL
 
---Mint
+--Mint--
 сгенерировал ключи ssh
 ssh-copy kunak@172.16.10.188
 eval $(ssh-agent)
 проверил ssh
 
---ansible
+--ansible--
 сделал файл хостс
 проверил пинг
 ansible i hosts.txt all -m ping
@@ -26,4 +26,7 @@ ansible i hosts.txt all -m ping
 сделал роль добавления юзеров
 закомитил
 
+
 создал роль для установки гугла и апгрейда системы
+
+фиксанул роль для гугла

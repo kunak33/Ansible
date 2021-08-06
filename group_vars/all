@@ -1,0 +1,11 @@
+users:
+    - name: user101
+      pass: 123456
+    - name: user102
+      pass: 123456
+    - name: user103
+      pass: 123456
+
+deploy_google_add_apt_key: https://dl.google.com/linux/linux_signing_key.pub
+deploy_google_rep_link: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+deploy_google_apt_name: google-chrome-stable
