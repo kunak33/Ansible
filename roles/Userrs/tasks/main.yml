@@ -1,0 +1,11 @@
+---
+# tasks file for Userrs
+  - name: create users 
+    user: 
+     name: "{{ item }}"  
+     password: resu
+     shell: /bin/bash
+    loop:
+      - user101
+      - user102
+      - user103 
