@@ -1,0 +1,54 @@
+---
+# tasks file for bg
+  - name: Rename hostname
+    template:
+     src: ../templates/bg_hostname_new.j2
+     dest: /etc/hostname
+     owner: root
+     group: root
+     mode: '0644'
+    tags: bg 
+
+  - name: Restart server
+    reboot:
+    tags: bg
+
+  - name: Wait for server to restart
+    wait_for:
+      port=22
+      delay=1
+      timeout=300
+    tags: bg
+
+  - name: User add
+    user:
+       name: "{{bg_user_name}}"
+       shell: /bin/bash
+       group: "{{bg_group_name}}"
+       password: "{{ bg_user_password | password_hash('sha512') }}"
+    tags: bg
+    
+  - name: make dir
+    file:
+      path: /home/{{bg_user_name}}/Desktop/test
+      state: directory
+      owner: "{{bg_user_name}}"
+    tags: bg
+
+  - name: make file
+    template:
+      src: ../templates/info.j2
+      dest: '/home/{{bg_user_name}}/Desktop/test/{{bg_name_of_hostname}}-{{bg_user_name}}'
+      owner: "{{bg_user_name}}"
+    tags: bg
+
+
+  - name: Collect only facts about hardware
+    setup:
+      gather_subset:
+      - hardware
+    tags: bgg
+  - name: Output disk information
+    debug:
+      var: hostvars[inventory_hostname].ansible_devices.keys() | list
+    tags: bgg

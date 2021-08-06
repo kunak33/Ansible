@@ -1,20 +1,20 @@
 ---
 # tasks file for deploy_google---
-# tasks file for deploy_google
-
 
 - name: Add an Apt key
   apt_key:
-    url: "{{deploy_google_add_apt_key}}"
+    url: "{{deploy_google_apt_key}}"
     state: present
+  tags: "deploy_google"
 
 - name: Add a repository
   apt_repository:
     repo: "{{deploy_google_rep_link}}"
     state: present
-  
+  tags: "deploy_google"
+
 - name: install {{deploy_google_apt_name}}
   apt:
     name: "{{deploy_google_apt_name}}"
     update_cache: yes
-    
+  tags: "deploy_google"
