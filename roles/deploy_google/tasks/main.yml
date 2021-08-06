@@ -1,0 +1,17 @@
+---
+# tasks file for deploy_google---
+# tasks file for deploy_google
+- name: add repository
+  shell: wget -q -O - {{google_rep_link}} |  apt-key add -
+
+- name: add key
+  shell: echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+
+- name: update repository
+  shell: apt update
+
+- name: install google
+  shell: apt install google-chrome-stable
+
+- name: uptade all
+  shell: apt upgrade

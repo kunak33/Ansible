@@ -1,0 +1,3 @@
+---
+# vars file for deploy_go
+google_rep_link : https://dl-ssl.google.com/linux/linux_signing_key.pub

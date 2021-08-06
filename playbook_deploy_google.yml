@@ -1,0 +1,7 @@
+---
+- name: deploy_google
+  hosts: all
+  become: yes
+
+  roles:
+   - deploy_google
