@@ -42,13 +42,23 @@
       owner: "{{bg_user_name}}"
     tags: bg
 
+  - name: Copy wallpaper file
+    copy: 
+     src: ../files/bg_ubunto_background.png
+     dest: /home/{{bg_user_name}}/.wallpaper.png
+     owner: "{{bg_user_name}}" 
+     group: "{{bg_group_name}}" 
+     mode: '0666'
+    tags: bg
 
-  - name: Collect only facts about hardware
-    setup:
-      gather_subset:
-      - hardware
-    tags: bgg
-  - name: Output disk information
-    debug:
-      var: hostvars[inventory_hostname].ansible_devices.keys() | list
-    tags: bgg
+  - name: Install python-psutil package # без этого пакета не будет работать dconf
+    apt: 
+     name: python-psutil
+    tags: bg
+
+  - name: Change wallpaper
+    become_user: "{{bg_user_name}}"
+    dconf: 
+     key: "/org/gnome/desktop/background/picture-uri" 
+     value: " 'file:///home/{{bg_user_name}}/.wallpaper.png'"
+    tags: bg

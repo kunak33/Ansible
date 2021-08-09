@@ -1,1 +1,9 @@
 host {{bg_name_of_hostname}} configuration:
+checking data configuration {{ansible_date_time.date}} {{ansible_date_time.time}}
+ip address v4: {{ansible_enp0s3.ipv4.address}}
+famaly OS {{ansible_os_family}}
+All devices
+{% for dev in ansible_devices  %}
+ device {{ dev }} : size {{ansible_devices[dev].size}}
+{% endfor %} 
+

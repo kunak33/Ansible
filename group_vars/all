@@ -10,10 +10,7 @@ deploy_google_apt_key: 'https://dl.google.com/linux/linux_signing_key.pub'
 deploy_google_rep_link: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
 deploy_google_apt_name: google-chrome-stable
 
-bg_name_of_hostname: newhostname
-
-
-bg_user_name: user1
+bg_name_of_hostname: NeName
+bg_user_name: user12
 bg_user_password: toor
 bg_group_name: users
-password: password
