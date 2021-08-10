@@ -1,25 +1,17 @@
 ---
 # tasks file for bg
+ 
   - name: Rename hostname
     template:
-     src: ../templates/bg_hostname_new.j2
-     dest: /etc/hostname
-     owner: root
-     group: root
-     mode: '0644'
+      src: ../templates/bg_hostname_new.j2
+      dest: /etc/hostname
+      owner: root
+      group: root
+      mode: '0644'
     tags: bg 
+    notify: Restart server
 
-  - name: Restart server
-    reboot:
-    tags: bg
-
-  - name: Wait for server to restart
-    wait_for:
-      port=22
-      delay=1
-      timeout=300
-    tags: bg
-
+  
   - name: User add
     user:
        name: "{{bg_user_name}}"
