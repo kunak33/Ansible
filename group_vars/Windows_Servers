@@ -1,0 +1,6 @@
+ansible_user: kunak33
+ansible_password: 1234
+ansible_port: 5985
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_transport: basic

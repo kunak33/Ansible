@@ -1,0 +1,35 @@
+---
+  
+- name: Copy msi pagkage
+ # win_package:
+   # path: https://www.tightvnc.com/download/2.8.59/tightvnc-2.8.59-gpl-setup-64bit.msi
+
+  win_copy:
+    src: ./files/{{VNC_package_name}}
+    dest: C:\temp\{{VNC_package_name}}
+  tags: vnc
+
+- name: install vnc
+  win_package:
+    path: C:\temp\{{VNC_package_name}}
+    arguments:
+     - ADDLOCAL=Server
+     - SET_USECONTROLAUTHENTICATION=1
+     - VALUE_OF_USECONTROLAUTHENTICATION=1
+     - SET_USEVNCAUTHENTICATION=1
+     - VALUE_OF_USEVNCAUTHENTICATION=1
+     - SET_CONTROLPASSWORD=1
+     - VALUE_OF_CONTROLPASSWORD=123456Qw
+     - SET_PASSWORD=1
+     - VALUE_OF_PASSWORD=123456Qw
+  tags: vnc
+
+- name: delete temp file
+  win_file:
+    path: C:\temp\{{VNC_package_name}}
+    state: absent
+  tags: vnc
+
+- name: add service to autorun
+  win_shell: "Set-Service -Name tvnserver -StartupType Automatic"
+  tags: vnc

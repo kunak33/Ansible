@@ -1,0 +1,7 @@
+---
+- name: Win_Servers
+  hosts: Windows_Servers
+
+  roles:
+   - deploy_VNC
+   - unistall_VNC

@@ -14,3 +14,4 @@ bg_name_of_hostname: NewHostname1
 bg_user_name: user12
 bg_user_password: toor
 bg_group_name: users
+VNC_package_name: tightvnc-2.8.59-gpl-setup-64bit.msi

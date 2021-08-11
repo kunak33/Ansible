@@ -1,0 +1,21 @@
+---
+- name: Copy msi pagkage
+ # win_package:
+   # path: 
+
+  win_copy:
+    src: ./files/{{VNC_package_name}}
+    dest: C:\temp\{{VNC_package_name}}
+  tags: vncc
+
+- name: uninstall vnc
+  win_package:
+    path: C:\temp\{{VNC_package_name}}
+    state : absent 
+  tags: vncc
+
+- name: delete msi file
+  win_file:
+    path: C:\temp\{{VNC_package_name}}
+    state: absent
+  tags: vncc
