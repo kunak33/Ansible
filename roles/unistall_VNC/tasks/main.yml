@@ -4,7 +4,7 @@
    # path: 
 
   win_copy:
-    src: ./files/{{VNC_package_name}}
+    src: ../deploy_VNC/files/{{VNC_package_name}}
     dest: C:\temp\{{VNC_package_name}}
   tags: vncc
 
