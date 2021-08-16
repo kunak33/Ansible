@@ -1,0 +1,44 @@
+---
+  
+- name: Copy msi pagkage
+
+  win_copy:
+    src: ./files/{{vpn_package_name}}
+    dest: C:\temp\{{vpn_package_name}}
+  tags: 
+    - vpn
+    - remove_vpn
+    - tester
+
+- name: install vpn
+  win_package:
+    path: C:\temp\{{vpn_package_name}}
+  tags: 
+    - vpn
+    - tester
+
+- name: unistall_vpn
+  win_package:
+    path: C:\temp\{{vpn_package_name}}
+    state: absent
+  tags: 
+    - remove_vpn
+
+- name: delete temp file
+  win_file:
+    path: C:\temp\{vpn_package_name}}
+    state: absent
+  tags: 
+    - vpn
+    - remove_vpn
+
+- name: copy config 
+  win_copy:
+    src: ./files/config
+    dest: C:\Program Files\OpenVPN
+  tags: 
+    - vpn
+#- name: add service to autorun
+#  win_shell: 
+#  tags: vpn
+
