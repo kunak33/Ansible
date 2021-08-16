@@ -18,4 +18,6 @@
   win_file:
     path: C:\temp\{{VNC_package_name}}
     state: absent
-  tags: vncc
+  tags: 
+   - vncc
+   - remove

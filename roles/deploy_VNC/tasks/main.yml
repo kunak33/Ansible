@@ -7,7 +7,9 @@
   win_copy:
     src: ./files/{{VNC_package_name}}
     dest: C:\temp\{{VNC_package_name}}
-  tags: vnc
+  tags: 
+    - vnc
+    - remove_vnc
 
 - name: install vnc
   win_package:
@@ -24,12 +26,22 @@
      - VALUE_OF_PASSWORD=123456Qw
   tags: vnc
 
+- name: unistall_vnc
+  win_package:
+    path: C:\temp\{{VNC_package_name}}
+    state: absent
+  tags: 
+    - remove_vnc
+
 - name: delete temp file
   win_file:
     path: C:\temp\{{VNC_package_name}}
     state: absent
-  tags: vnc
+  tags: 
+    - vnc
+    - remove_vnc
 
 - name: add service to autorun
   win_shell: "Set-Service -Name tvnserver -StartupType Automatic"
   tags: vnc
+
